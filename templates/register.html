@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration Page</title>
+    <style>
+              body{
+    margin: 0;
+    padding: 0;
+  font-family: 'Baloo Bhai 2', cursive;
+    background: linear-gradient(120deg,#2980b9,#8e44ad);
+    height: 100vh;
+    overflow: hidden;
+}
+.center{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 437px;
+    border-radius: 10px;
+    background-color: white;
+
+}
+.center h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+}
+.center form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+form .text-field{
+    position: relative;
+    margin: 25px 0;
+    border-bottom: 2px solid black;
+}
+form .radio{
+    margin: 25px 0;
+}
+form .checkbox{
+    margin: 25px 0;
+}
+form .drop-down{
+    margin: 25px 0;
+}
+form .add{
+    margin: 25px 0;
+}
+.text-field input{
+    width: 100%;
+    padding: 0 5px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    height: 40px;
+}
+.text-field label{
+    position: absolute;
+    top: 50%;
+    left :5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+
+}
+.text-field span::before{
+    content: '';
+    position: absolute;
+    top:40%;
+    left: 0;
+    transition: .5s;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    top:40px;
+}
+.text-field input:focus ~ label,
+.text-field input:valid ~ label{
+    top:-5px;
+    color:#2691d9 ;
+}
+.text-field input:focus ~ span::before,
+.text-field input:valid ~ span::before{
+    width: 100%;
+
+}
+input[type="submit"]{
+    width: 100%;
+    height: 50px;
+    background:#2691d9;
+    border-radius: 25px;
+    font-size: 18px;
+    border: 1px solid;
+    color: #e9f4fb;
+    font-weight: 400;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="submit"]:hover{
+    border-color: #2691d9;
+    transition: .5s;
+}
+.sign-up{
+    margin: 30px 0;
+    text-align: center;
+    color:#666666;
+    font-size: 16px;
+}
+.sign-up a{
+    color: #2691d9;
+    text-decoration: none;
+}
+.sign-up a:hover{
+    text-decoration: underline;
+}
+.msg{
+        display: flex;
+        justify-content: center;
+        font-size: 30px;
+    }
+    </style>
+</head>
+<body>
+<div class="msg">
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: red">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+</div>
+<div class="center">
+    <h1>Register</h1>
+ <form action="/register" method="POST">
+             <div class="text-field">
+            <input type="text" required name="fname">
+            <label>First Name</label>
+        </div>
+        <div class="text-field">
+            <input type="text" required name="lname">
+            <label>Last Name</label>
+        </div>
+        <div class="text-field">
+            <input type="text" required name="uname">
+            <label>Username</label>
+        </div>
+        <div class="text-field">
+            <input type="password" required name="pwd">
+            <label>Password</label>
+        </div>
+        <div class="radio">
+            Gender: Male<input type="radio" name="myGender" value="Male"> Female<input type="radio" name="myGender"
+                                                                                       value="Female">
+                                                                                       Other<input type="radio" name="myGender" value="Other">
+            <!--Here both name should be same so that only one of them can be selected-->
+        </div>
+
+
+
+        <input type="submit" value="Register">
+        <div class="sign-up">
+            Already have an account? <a href="/">LOG IN</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
